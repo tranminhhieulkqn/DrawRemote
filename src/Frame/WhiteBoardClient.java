@@ -79,12 +79,13 @@ public class WhiteBoardClient extends JFrame implements WindowListener {
 		}
     }
 	
-	
+	// called by the Client to append text in the TextArea 
 	public void append(String str) {
 		textAreaChat.append(str);
 		textAreaChat.setCaretPosition(textAreaChat.getText().length() - 1);
 	}
-	
+	// called by the WhiteBoardClient is the connection failed
+	// we reset our buttons, label, textfield
 	public void connectionFailed() {
 		btnLogin.setEnabled(true);
 		btnLogout.setEnabled(false);
@@ -490,8 +491,8 @@ public class WhiteBoardClient extends JFrame implements WindowListener {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnC_LightGray, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGap(10)
-					.addComponent(lblNetVe)
-					.addGap(908))
+					.addComponent(lblNetVe, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
+					.addGap(744))
 		);
 		gl_pnlColor.setVerticalGroup(
 			gl_pnlColor.createParallelGroup(Alignment.LEADING)
@@ -547,12 +548,12 @@ public class WhiteBoardClient extends JFrame implements WindowListener {
 					port = Integer.parseInt(portNumber);
 				}
 				catch(Exception en) {
-					return;   
+					return;   // nothing I can do if port number is not valid
 				}
 
 				// try creating a new Client with WhiteBoardClient
 				client = new Client(server, port, username, frame);
-				
+				// test if we can start the Client
 				if(!client.start())
 					return;
 				paintApp.setClient(client);

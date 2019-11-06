@@ -5,8 +5,8 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 
-
 import Frame.WhiteBoardClient;
+import Object.User;
 import Shape.Paint;
 
 /*
@@ -16,6 +16,14 @@ public class Client{
 	private String 					serverHost;
 	private int 					port;
 	private String 					username;	//Username Client
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
 	private ObjectInputStream 		sInput;		// to read from the socket
 	private ObjectOutputStream 		sOutput;	// to write on the socket
 	private Socket 					socket;
@@ -80,7 +88,8 @@ public class Client{
 	}
 	public void messageLogout() {
 		try {
-			sOutput.writeObject("Logout");
+			if(sInput == null || sOutput == null || socket == null) disconnect(); 
+			else sOutput.writeObject("Logout");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			msg = "Error to write to Server - IOException : " + e.getMessage();
@@ -90,12 +99,20 @@ public class Client{
 	//To send list Paint to the server
 	public void sendListPaint(ArrayList<Paint> listPaint) {
 		try {
-			sOutput.writeObject(listPaint);
+			if(sInput == null || sOutput == null || socket == null) {
+				disconnect();
+			}
+			else sOutput.writeObject(listPaint); 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			msg = "Error to write to Server - IOException : " + e.getMessage();
-			showMessage(msg);
+//			msg = "Error to write to Server - IOException : " + e.getMessage();
+//			showMessage(msg);
 		}
+	}
+	
+	public void showNetVe(String user) {
+		String info = "Nét vẽ của " + user;
+		board.lblNetVe.setText(info);
 	}
 
 	/*
@@ -133,17 +150,18 @@ public class Client{
 						board.paintApp.listPaint = listPaint;
 	//					int k = 1;
 //						showMessage("==================================Đã nhận từ Server");
-						System.out.print("=============================================" + "\n");
-						for (Paint paint : listPaint) {
-							
-							System.out.print("Client : " + paint.toString()+ "\n");
-						}
+//						System.out.print("=============================================" + "\n");
+//						for (Paint paint : listPaint) {
+//							
+//							System.out.print("Client : " + paint.toString()+ "\n");
+//						}
 						board.paintApp.repaint();
 						board.repaint();
 					}
 				} catch (ClassNotFoundException | IOException e) {
 					// TODO Auto-generated catch block
-					msg = "The server has been closed by - Exception ; " + e.getMessage();
+					if(socket == null) msg = "The server has been closed by - Exception ; " + e.getMessage();
+					else msg = "Logged out successfully!";
 					showMessage(msg);
 					board.connectionFailed();
 					break;

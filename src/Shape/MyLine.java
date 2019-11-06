@@ -9,7 +9,7 @@ import java.io.Serializable;
 import Frame.WhiteBoardClient;
 import Object.GraphicAdapter;
 
-public class MyLine implements Class1D, Serializable{
+public class MyLine extends Class1D implements Serializable{
 	/**
 	 * 
 	 */
@@ -82,5 +82,6 @@ public class MyLine implements Class1D, Serializable{
     	setLine(ln);
     	setColor(WhiteBoardClient.selectColor);
     }
+
 	
 }

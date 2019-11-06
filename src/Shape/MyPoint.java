@@ -8,8 +8,9 @@ import java.io.Serializable;
 
 import Frame.WhiteBoardClient;
 import Object.GraphicAdapter;
+import Object.User;
 
-public class MyPoint implements Class1D, Serializable{
+public class MyPoint extends Class1D implements Serializable{
 	/**
 	 * 
 	 */
@@ -76,5 +77,6 @@ public class MyPoint implements Class1D, Serializable{
 	public void setColor(Color color) {
 		this.color = color;
 	}
+
 	
 }

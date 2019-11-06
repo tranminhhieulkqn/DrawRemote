@@ -10,7 +10,7 @@ import java.io.Serializable;
 import Frame.WhiteBoardClient;
 import Object.GraphicAdapter;
 
-public class MyRectangle implements Class2D, Serializable{
+public class MyRectangle extends Class2D implements Serializable{
 	/**
 	 * 
 	 */
@@ -110,5 +110,6 @@ public class MyRectangle implements Class2D, Serializable{
 	public void setColor(Color color) {
 		this.color = color;
 	}
+
 }
 

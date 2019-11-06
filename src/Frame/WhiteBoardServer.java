@@ -35,9 +35,9 @@ import Object.ColorChoose;
 import Object.DrawType;
 import Object.OpenFile;
 import Object.SaveFile;
-import Object.User;
 import Paint.PaintApp;
 import Socket.Server;
+import javax.swing.DefaultListModel;
 
 public class WhiteBoardServer extends JFrame implements WindowListener{
 
@@ -58,6 +58,9 @@ public class WhiteBoardServer extends JFrame implements WindowListener{
 	private JTextField textFieldPortNumber;
 	JTextArea textAreaChat;
 	JTextArea textAreaStatus;
+	public DefaultListModel<String> model = new DefaultListModel<String>();
+	public JList<String> listUser;
+	public JLabel lblNetVe;
 	// my server
 	public Server server;
 	static WhiteBoardServer frame;
@@ -442,6 +445,10 @@ public class WhiteBoardServer extends JFrame implements WindowListener{
 				selectColor = Color.lightGray;
 			}
 		});
+		
+		lblNetVe = new JLabel("Nét vẽ");
+		lblNetVe.setForeground(Color.WHITE);
+		lblNetVe.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GroupLayout gl_pnlColor = new GroupLayout(pnlColor);
 		gl_pnlColor.setHorizontalGroup(
 			gl_pnlColor.createParallelGroup(Alignment.LEADING)
@@ -462,21 +469,28 @@ public class WhiteBoardServer extends JFrame implements WindowListener{
 					.addComponent(btnC_Pink, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnC_LightGray, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(658))
+					.addGap(10)
+					.addComponent(lblNetVe, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
+					.addGap(908))
 		);
 		gl_pnlColor.setVerticalGroup(
 			gl_pnlColor.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnlColor.createSequentialGroup()
-					.addContainerGap()
 					.addGroup(gl_pnlColor.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnC_LightGray, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnC_Blue, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnC_Red, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnC_Green, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnC_Cyan, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnC_DarkGray, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnC_Orange, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnC_Pink, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_pnlColor.createSequentialGroup()
+							.addContainerGap()
+							.addGroup(gl_pnlColor.createParallelGroup(Alignment.LEADING)
+								.addComponent(btnC_LightGray, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnC_Blue, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnC_Red, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnC_Green, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnC_Cyan, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnC_DarkGray, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnC_Orange, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnC_Pink, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(gl_pnlColor.createSequentialGroup()
+							.addGap(19)
+							.addComponent(lblNetVe, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		pnlColor.setLayout(gl_pnlColor);
@@ -590,7 +604,7 @@ public class WhiteBoardServer extends JFrame implements WindowListener{
 				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
 		);
 		
-		JList listUser = new JList();
+		listUser = new JList<String>(model);
 		scrollPane.setViewportView(listUser);
 		panelListUser.setLayout(gl_panelListUser);
 		GroupLayout gl_panelManagement = new GroupLayout(panelManagement);
@@ -633,7 +647,8 @@ public class WhiteBoardServer extends JFrame implements WindowListener{
 		validate();
 	}
 	
-	
+	// append message to the two JTextArea
+	// position at the end
 	public void appendChatRoom(String str) {
 		textAreaChat.append(str);
 		textAreaChat.setCaretPosition(textAreaChat.getText().length() - 1);

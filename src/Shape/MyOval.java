@@ -11,7 +11,7 @@ import Frame.WhiteBoardClient;
 import Object.GraphicAdapter;
 
 
-public class MyOval implements Class2D, Serializable{
+public class MyOval extends  Class2D implements Serializable{
 	/**
 	 * 
 	 */

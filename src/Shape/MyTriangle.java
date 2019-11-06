@@ -9,8 +9,9 @@ import java.io.Serializable;
 
 import Frame.WhiteBoardClient;
 import Object.GraphicAdapter;
+import Object.User;
 
-public class MyTriangle implements Class2D, Serializable{
+public class MyTriangle extends Class2D implements Serializable{
 	
 	/**
 	 * 
@@ -137,5 +138,6 @@ public class MyTriangle implements Class2D, Serializable{
 	public void setColor(Color color) {
 		this.color = color;
 	}
+
 	
 }

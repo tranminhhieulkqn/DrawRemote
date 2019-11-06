@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.swing.AbstractListModel;
 import javax.swing.JOptionPane;
 
 import Frame.WhiteBoardServer;
@@ -58,6 +59,7 @@ public class Server {
 				listClient.add(clientThread);									// save it in the ArrayList
 				clientThread.start();
 				broadcast(board.paintApp.listPaint);
+				showListUser();
 			}
 			// I was asked to stop
 			try {
@@ -88,6 +90,17 @@ public class Server {
 		catch(Exception e) {
 			
 		}
+	}
+	public void showListUser() {
+		board.model.clear();
+		for (ClientThread clientThread : listClient) {
+			board.model.addElement(clientThread.username);
+		}
+		
+	}
+	public void showNetVe(String user) {
+		String info = "Nét vẽ của " + user;
+		board.lblNetVe.setText(info);
 	}
 	/*
 	 * Display an event (not a message) to the console or the GUI
@@ -163,7 +176,10 @@ public class Server {
 //				// read the username
 //				username = (String)sInput.readObject();
 //				showMessage(username + " just connected.");
-				boolean x = handleLogonMsg();
+				if(!loginNotification()) {
+					remove(id);
+//					disconnect();
+				}
 //			}
 //			catch (IOException e) {
 //				showMessage("Exception creating new Input/output Streams: " + e);
@@ -189,7 +205,12 @@ public class Server {
 					if(sInput == null || sOutput == null || socket == null) break;
 					try {
 						msgTemp = (String)temp;
-						if(msgTemp.equals("Logout")) stop_();
+						if(msgTemp.equals("Logout")) {
+							stop_();
+//							showListUser();
+							msg = username + " has logged out of the session.";
+							showMessage(msg);
+						}
 					} catch (Exception e) {
 						// TODO: handle exception
 					}
@@ -204,11 +225,15 @@ public class Server {
 					}
 				} catch (ClassNotFoundException | IOException e) {
 					// TODO Auto-generated catch block
-					msg = "Error readObject from server - Exception : " + e.getMessage();
+					if(sInput != null && sOutput != null && socket == null) msg = "Error readObject from server - Exception : " + e.getMessage();
+					else msg = username + " has logged out of the session.";
 					showMessage(msg);
+//					showListUser();
 					break;
 				}
+				
 			}
+//			showListUser();
 			// remove myself from the arrayList containing the list of the
 			// connected Clients
 			remove(id);
@@ -224,6 +249,7 @@ public class Server {
 				if(sInput != null) sInput.close();
 				if(sOutput != null) sOutput.close();
 				if(socket != null) socket.close();
+				showListUser();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				msg = username + " === Error closing all connect - IOException : " + e.getMessage();
@@ -231,18 +257,20 @@ public class Server {
 			}
 		}
 
-		public boolean handleLogonMsg() {
+		public boolean loginNotification() {
 			try {
-			// create output first
-			sOutput = new ObjectOutputStream(socket.getOutputStream());
-			sInput  = new ObjectInputStream(socket.getInputStream());
-
-	        String username = (String)sInput.readObject();
-			
-	        int response = JOptionPane.showConfirmDialog(null, username +" want to join in?", "allow", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				// create output first
+				sOutput = new ObjectOutputStream(socket.getOutputStream());
+				sInput  = new ObjectInputStream(socket.getInputStream());
+	
+		        username = (String)sInput.readObject();
+				
+		        int response = JOptionPane.showConfirmDialog(null, username +" want to join in?", "Login confirmation required", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 	            if (response == JOptionPane.NO_OPTION) {
-	              System.out.println(username +" quit!");
-	              return false;
+					System.out.println(username +" quit!");
+					msg = "Server does not allow user : "+ username +" to join";
+					showMessage(msg);
+					return false;
 	            } else if (response == JOptionPane.YES_OPTION || response == JOptionPane.CLOSED_OPTION) {
 	            	showMessage(username + " just connected.");
 	            }

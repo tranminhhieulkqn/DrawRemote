@@ -6,6 +6,7 @@ import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 import javax.swing.JComponent;
@@ -13,11 +14,10 @@ import javax.swing.JComponent;
 import com.sun.javafx.geom.Rectangle;
 
 import Frame.WhiteBoardClient;
-
 import Object.DrawType;
 import Object.GraphicAdapter;
-import Object.InfoPaint;
 import Object.OpenFile;
+import Object.User;
 import Shape.Class2D;
 import Shape.MyCircle;
 import Shape.MyLine;
@@ -29,9 +29,6 @@ import Shape.MyTriangle;
 import Shape.Paint;
 import Socket.Client;
 import Socket.Server;
-import sun.security.util.ArrayUtil;
-
-import javafx.scene.shape.Line;
 
 @SuppressWarnings("serial")
 public class PaintApp extends JComponent {
@@ -40,7 +37,10 @@ public class PaintApp extends JComponent {
 	public BasicStroke basicStroke;
 	public ArrayList<Paint> listPaint = new ArrayList<Paint>();
 	private DrawType drawType;
+	
+
 	private Client client = null;
+	public String user = null;
 	private Server server = null;
 	
 	public Client getClient() {
@@ -48,6 +48,8 @@ public class PaintApp extends JComponent {
 	}
 	public void setClient(Client client) {
 		this.client = client;
+		this.user = client.getUsername();
+		System.out.print(user);
 	}
 	public Server getServer() {
 		return server;
@@ -64,14 +66,24 @@ public class PaintApp extends JComponent {
 	}
 	
 	void supportSend(ArrayList<Paint> listPaint) {
-		if(client != null) client.sendListPaint(listPaint);
+		if(client != null) {
+			client.sendListPaint(listPaint);
+//			System.out.print("=======================================================" + "\n");
+//			for (Paint paint : listPaint) {
+//				System.out.print(paint.toString()+ "*****" + paint.getUser() + "\n");
+//			}
+		}
 		if(server != null) {
-			System.out.print("=======================================================" + "\n");
-			for (Paint paint : listPaint) {
-				System.out.print(paint.toString() + "\n");
-			}
+//			System.out.print("=======================================================" + "\n");
+//			for (Paint paint : listPaint) {
+//				System.out.print(paint.toString() + "\n");
+//			}
 			server.sendListPaint(listPaint);
 		}
+	}
+	void showNetVe(String user) {
+		if(client != null) client.showNetVe(user);
+		if(server != null) server.showNetVe(user);
 	}
 	public PaintApp() {
 		this.drawType = DrawType.Pen;
@@ -104,31 +116,37 @@ public class PaintApp extends JComponent {
 	        	switch (drawType) {
 				case Rectangle:
 					obj = new MyRectangle();
+					obj.setUser(user);
 	        		obj.makeObject(startDrag, p);
 	    			listPaint.add(obj);
 					break;
 				case Square:
 					obj = new MySquare();
+					obj.setUser(user);
 	        		obj.makeObject(startDrag, p);
 	    			listPaint.add(obj);
 					break;
 				case Triangle:
 					obj = new MyTriangle();
+					obj.setUser(user);
 	        		obj.makeObject(startDrag, p);
 	    			listPaint.add(obj);
 	    			break;
 				case Circle:
 					obj = new MyCircle();
+					obj.setUser(user);
 	        		obj.makeObject(startDrag, p);
 	    			listPaint.add(obj);
 					break;
 				case Oval:
 					obj = new MyOval();
+					obj.setUser(user);
 	        		obj.makeObject(startDrag, p);
 	    			listPaint.add(obj);
 					break;
 				case Line:
 					obj = new MyLine(startDrag, new Point(e.getX(),  e.getY()), WhiteBoardClient.selectColor);
+					obj.setUser(user);
 	        		obj.makeObject(startDrag, p);
 	    			listPaint.add(obj);
 					break;
@@ -173,13 +191,25 @@ public class PaintApp extends JComponent {
 	        	Paint obj;
 	        	if(drawType == DrawType.Pen) {
 	        		obj = new MyPoint();
+	        		obj.setUser(user);
 	        		obj.makeObject(endDrag, endDrag);
 	    			listPaint.add(obj);
 	        	}
 	        	supportSend(listPaint);
 	        	repaint();
 	        }
+	        @Override
+	        public void mouseMoved(MouseEvent e) {
+	        	// TODO Auto-generated method stub
+        		for (Paint item : listPaint) {
+					if(item.contains(new Point(e.getX(), e.getY()))){
+						showNetVe(item.getUser());
+						break;
+					}
+				}
+	        }
 	      });
+		
 	}
 	public void paint(Graphics g) {
 		GraphicAdapter g2 = new GraphicAdapter() { };
