@@ -619,12 +619,10 @@ public class WhiteBoardServer extends JFrame implements WindowListener{
 					.addComponent(buttonStartStop, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 				.addGroup(gl_panelManagement.createSequentialGroup()
-					.addGroup(gl_panelManagement.createParallelGroup(Alignment.TRAILING)
-						.addComponent(panelListUser, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
-						.addGroup(Alignment.LEADING, gl_panelManagement.createSequentialGroup()
-							.addGap(3)
-							.addComponent(panelChatRoom, GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE))
-						.addComponent(panelStatus, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE))
+					.addGroup(gl_panelManagement.createParallelGroup(Alignment.LEADING)
+						.addComponent(panelListUser, GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
+						.addComponent(panelStatus, GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
+						.addComponent(panelChatRoom, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE))
 					.addGap(3))
 		);
 		gl_panelManagement.setVerticalGroup(

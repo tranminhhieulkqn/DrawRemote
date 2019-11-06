@@ -36,6 +36,7 @@ public class PaintApp extends JComponent {
 	public Paint ptemp;
 	public BasicStroke basicStroke;
 	public ArrayList<Paint> listPaint = new ArrayList<Paint>();
+	public ArrayList<Paint> listPaintServer = new ArrayList<Paint>();;
 	private DrawType drawType;
 	
 
@@ -49,12 +50,13 @@ public class PaintApp extends JComponent {
 	public void setClient(Client client) {
 		this.client = client;
 		this.user = client.getUsername();
-		System.out.print(user);
+//		System.out.print(user);
 	}
 	public Server getServer() {
 		return server;
 	}
 	public void setServer(Server server) {
+		this.user = "Server";
 		this.server = server;
 	}
 
@@ -81,6 +83,14 @@ public class PaintApp extends JComponent {
 			server.sendListPaint(listPaint);
 		}
 	}
+	void supportRemove(Paint paint) {
+		if(server == null) listPaint.remove(paint);
+		if(server != null) listPaintServer.remove(paint);
+	}
+	void supportAdd(Paint paint) {
+		if(server == null) listPaint.add(paint);
+		if(server != null) listPaintServer.add(paint);
+	}
 	void showNetVe(String user) {
 		if(client != null) client.showNetVe(user);
 		if(server != null) server.showNetVe(user);
@@ -91,19 +101,22 @@ public class PaintApp extends JComponent {
 			public void mousePressed(MouseEvent e) {
 				startDrag = new Point(e.getX(), e.getY());
 				endDrag = startDrag;
+				ArrayList<Paint> temp;
+				if(server == null) temp = listPaint;
+				else temp = listPaintServer;
 				if(drawType == DrawType.Move){
-					for (Paint item : listPaint) {
+					for (Paint item : temp) {
 						if(item.contains(startDrag)){
 		        			  ptemp = item;
-		        			  listPaint.remove(item); break;
+		        			  supportRemove(item); break;
 		        		  }
 					}
 				}
 				else if(drawType == DrawType.Delete ){
-					for (Paint item : listPaint) {
+					for (Paint item : temp) {
 						if(item.contains(startDrag)){
 							ptemp = null;
-							listPaint.remove(item); break;
+							supportRemove(item); break;
 						}
 					}
 				}
@@ -118,37 +131,37 @@ public class PaintApp extends JComponent {
 					obj = new MyRectangle();
 					obj.setUser(user);
 	        		obj.makeObject(startDrag, p);
-	    			listPaint.add(obj);
+	    			supportAdd(obj);
 					break;
 				case Square:
 					obj = new MySquare();
 					obj.setUser(user);
 	        		obj.makeObject(startDrag, p);
-	    			listPaint.add(obj);
+	    			supportAdd(obj);
 					break;
 				case Triangle:
 					obj = new MyTriangle();
 					obj.setUser(user);
 	        		obj.makeObject(startDrag, p);
-	    			listPaint.add(obj);
+	    			supportAdd(obj);
 	    			break;
 				case Circle:
 					obj = new MyCircle();
 					obj.setUser(user);
 	        		obj.makeObject(startDrag, p);
-	    			listPaint.add(obj);
+	    			supportAdd(obj);
 					break;
 				case Oval:
 					obj = new MyOval();
 					obj.setUser(user);
 	        		obj.makeObject(startDrag, p);
-	    			listPaint.add(obj);
+	    			supportAdd(obj);
 					break;
 				case Line:
 					obj = new MyLine(startDrag, new Point(e.getX(),  e.getY()), WhiteBoardClient.selectColor);
 					obj.setUser(user);
 	        		obj.makeObject(startDrag, p);
-	    			listPaint.add(obj);
+	    			supportAdd(obj);
 					break;
 				case Fill:
 					for(int i = listPaint.size() - 1; i >= 0; i--){
@@ -171,7 +184,7 @@ public class PaintApp extends JComponent {
 				case Move:
 					if(ptemp.contains(startDrag)){
         				ptemp.move(startDrag, p);
-    					listPaint.add(ptemp);
+    					supportAdd(ptemp);
         			}
 					break;
 				default:
@@ -193,7 +206,7 @@ public class PaintApp extends JComponent {
 	        		obj = new MyPoint();
 	        		obj.setUser(user);
 	        		obj.makeObject(endDrag, endDrag);
-	    			listPaint.add(obj);
+	    			supportAdd(obj);
 	        	}
 	        	supportSend(listPaint);
 	        	repaint();
@@ -201,6 +214,14 @@ public class PaintApp extends JComponent {
 	        @Override
 	        public void mouseMoved(MouseEvent e) {
 	        	// TODO Auto-generated method stub
+	        	if(server != null) {
+	        		for (Paint item : listPaintServer) {
+						if(item.contains(new Point(e.getX(), e.getY()))){
+							showNetVe(item.getUser());
+							break;
+						}
+					}
+	        	}
         		for (Paint item : listPaint) {
 					if(item.contains(new Point(e.getX(), e.getY()))){
 						showNetVe(item.getUser());
@@ -222,6 +243,11 @@ public class PaintApp extends JComponent {
 		}
 		for (Paint pt : listPaint){
 			pt.draw(g2);
+		}
+		if(server != null) {
+			for (Paint pt : listPaintServer){
+				pt.draw(g2);
+			}
 		}
 		Paint obj;
 		if (startDrag != null && endDrag != null) {
