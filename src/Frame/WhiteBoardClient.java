@@ -29,6 +29,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
+import Object.ChatMessage;
 import Object.ColorChoose;
 import Object.DrawType;
 import Object.OpenFile;
@@ -78,7 +79,7 @@ public class WhiteBoardClient extends JFrame implements WindowListener {
 			e.printStackTrace();
 		}
     }
-	
+
 	// called by the Client to append text in the TextArea 
 	public void append(String str) {
 		textAreaChat.append(str);
@@ -632,6 +633,12 @@ public class WhiteBoardClient extends JFrame implements WindowListener {
 		label_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		textFieldMessage = new JTextField();
+		textFieldMessage.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				client.sendMessageChat(new ChatMessage(client.getUsername() +" >> "+ textFieldMessage.getText()));
+				textFieldMessage.setText("");
+			}
+		});
 		
 		textFieldMessage.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		textFieldMessage.setColumns(10);

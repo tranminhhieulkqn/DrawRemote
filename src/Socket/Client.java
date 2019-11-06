@@ -3,9 +3,12 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import Frame.WhiteBoardClient;
+import Object.ChatMessage;
 import Object.User;
 import Shape.Paint;
 
@@ -16,6 +19,7 @@ public class Client{
 	private String 					serverHost;
 	private int 					port;
 	private String 					username;	//Username Client
+	private SimpleDateFormat 		simpleDateFormat = new SimpleDateFormat("HH:mm");
 	public String getUsername() {
 		return username;
 	}
@@ -84,7 +88,7 @@ public class Client{
 
 	//To send message to the WhiteBoardClient
 	private void showMessage(String msg) {
-		board.append(msg + "\n");
+		board.append(simpleDateFormat.format(new Date()) + " "+ msg + "\n");
 	}
 	public void messageLogout() {
 		try {
@@ -94,6 +98,21 @@ public class Client{
 			// TODO Auto-generated catch block
 			msg = "Error to write to Server - IOException : " + e.getMessage();
 			showMessage(msg);
+		}
+	}
+	public void sendMessageChat(ChatMessage chatMessage) {
+		try {
+			if(sInput == null || sOutput == null || socket == null) {
+				disconnect();
+			}
+			else {
+				sOutput.writeObject(chatMessage);
+				showMessage(chatMessage.getMessage());
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+//			msg = "Error to write to Server - IOException : " + e.getMessage();
+//			showMessage(msg);
 		}
 	}
 	//To send list Paint to the server
@@ -139,24 +158,40 @@ public class Client{
 	class ListenFromServer extends Thread {
 		@SuppressWarnings("unchecked")
 		public void run() {
+			ChatMessage chatTemp;
 			while(true) {
-				try {
-					if (sInput == null || sOutput == null) {
-						break;
-					} else {
-						listPaint = (ArrayList<Paint>)sInput.readObject();
+				
+				if (sInput == null || sOutput == null) {
+					break;
+				}
 						
-	//					if(!board.paintApp.listPaint.equals(listPaint))
-						board.paintApp.listPaint = listPaint;
-	//					int k = 1;
-//						showMessage("==================================Đã nhận từ Server");
-//						System.out.print("=============================================" + "\n");
-//						for (Paint paint : listPaint) {
-//							
-//							System.out.print("Client : " + paint.toString()+ "\n");
-//						}
-						board.paintApp.repaint();
-						board.repaint();
+				try {
+					Object temp = sInput.readObject();
+					
+					// Thử ép kiểu sang ChatMessage nếu được broadcast
+					try {
+						chatTemp = (ChatMessage)temp;
+						showMessage(chatTemp.getMessage());
+					} catch (Exception e) {
+						// TODO: handle exception
+					}
+					
+					try {
+							listPaint = (ArrayList<Paint>)temp;
+							
+		//					if(!board.paintApp.listPaint.equals(listPaint))
+							board.paintApp.listPaint = listPaint;
+		//					int k = 1;
+//							showMessage("==================================Đã nhận từ Server");
+//							System.out.print("=============================================" + "\n");
+//							for (Paint paint : listPaint) {
+//								
+//								System.out.print("Client : " + paint.toString()+ "\n");
+//							}
+							board.paintApp.repaint();
+							board.repaint();
+					} catch (Exception e) {
+						// TODO: handle exception
 					}
 				} catch (ClassNotFoundException | IOException e) {
 					// TODO Auto-generated catch block
@@ -166,6 +201,9 @@ public class Client{
 					board.connectionFailed();
 					break;
 				}
+						
+								
+				
 			}
 		}
 	}

@@ -117,6 +117,9 @@ public class Server {
 	private void showMessage(String msg) {
 		board.appendEvent(simpleDateFormat.format(new Date()) + " " + msg + "\n");
 	}
+	private void showChat(ChatMessage chatMessage) {
+		board.appendChatRoom(simpleDateFormat.format(new Date()) + " " + chatMessage.getMessage() + "\n");
+	}
 	/*
 	 *  to broadcast a message to all Clients
 	 */
@@ -145,6 +148,15 @@ public class Server {
 //			clientThread.sendListPaint(listPaint);
 //		}
 //		showMessage("Có broadcast rồi mà!");
+	}
+	private synchronized void broadcastChatMessage(ChatMessage chatMessage) {
+		for(int i = listClient.size(); --i >= 0;) {
+			ClientThread ct = listClient.get(i);
+			if(!ct.sendMessageChat(chatMessage)) {
+				listClient.remove(i);
+				showMessage("Disconnected Client " + ct.username + " removed from list.");
+			}
+		}
 	}
 
 	// for a client who logoff using the LOGOUT message
@@ -208,21 +220,30 @@ public class Server {
 			// to loop until LOGOUT
 //			boolean keepGoing = true;
 			String msgTemp;
+			ChatMessage chatTemp;
 			while(keepGoing_) {
 				try {
 					Object temp = sInput.readObject();
 					if(sInput == null || sOutput == null || socket == null) break;
+					// Nhận String "Logout" từ Client để logout
 					try {
 						msgTemp = (String)temp;
 						if(msgTemp.equals("Logout")) {
 							stop_();
-//							showListUser();
 							msg = username + " has logged out of the session.";
 							showMessage(msg);
 						}
 					} catch (Exception e) {
 						// TODO: handle exception
 					}
+					// Thử ép kiểu sang ChatMessage nếu được broadcast
+					try {
+						chatTemp = (ChatMessage)temp;
+						showChat(chatTemp);
+					} catch (Exception e) {
+						// TODO: handle exception
+					}
+					// Thử ép kiểu listPaint nhận giá trị
 					try {
 						listPaint = (ArrayList<Paint>)temp;
 						board.paintApp.listPaint = new ArrayList<Paint>(listPaint);
@@ -237,12 +258,10 @@ public class Server {
 					if(sInput != null && sOutput != null && socket == null) msg = "Error readObject from server - Exception : " + e.getMessage();
 					else msg = username + " has logged out of the session.";
 					showMessage(msg);
-//					showListUser();
 					break;
 				}
 				
 			}
-//			showListUser();
 			// remove myself from the arrayList containing the list of the
 			// connected Clients
 			remove(id);
@@ -294,6 +313,22 @@ public class Server {
 		/*
 		 * Write a String to the Client output stream
 		 */
+		private boolean sendMessageChat(ChatMessage chatMessage) {
+			// Chỉ gửi tin nhắn khi kết nối đã được thiết lập
+			if(!socket.isConnected()) {
+				disconnect();
+				return false;
+			}
+			try {
+				sOutput.writeObject(chatMessage);
+				sOutput.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				msg = "Error to send message - IOException : " + e.getMessage();
+				showMessage(msg);
+			}
+			return true;
+		}
 		private boolean sendListPaint(ArrayList<Paint> listPaint) {
 			// if Client is still connected send the message to it
 			if(!socket.isConnected()) {
