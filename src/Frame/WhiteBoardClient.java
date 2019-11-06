@@ -12,11 +12,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.util.ArrayList;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -31,13 +29,12 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
-import Object.ChatMessage;
 import Object.ColorChoose;
 import Object.DrawType;
 import Object.OpenFile;
 import Object.SaveFile;
+import Object.User;
 import Paint.PaintApp;
-import Shape.Paint;
 import Socket.Client;
 
 public class WhiteBoardClient extends JFrame implements WindowListener {
@@ -67,11 +64,14 @@ public class WhiteBoardClient extends JFrame implements WindowListener {
 	public JTextField textFieldMessage;
 	public JButton btnLogin;
 	public JButton btnLogout;
+	public JLabel lblNetVe;
+	
 	
 	
 	public static void main(String[] args) 
     {
     	try{
+    		
     		frame = new WhiteBoardClient();
     		frame.setVisible(true);
         }catch (Exception e) {
@@ -118,7 +118,7 @@ public class WhiteBoardClient extends JFrame implements WindowListener {
 		mntmNew.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 //				selectShap = "";
-				drawType = null;
+				drawType = DrawType.Pen;
 				OpenFile.image = null;
 				paintApp.listPaint.clear();
 				repaint();
@@ -195,7 +195,6 @@ public class WhiteBoardClient extends JFrame implements WindowListener {
 		 * Button selected draw Point
 		 */
 		JButton btnPoint = new JButton("Point");
-		btnPoint.setIcon(new ImageIcon(WhiteBoardClient.class.getResource("/Img/1.gif")));
 		btnPoint.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				paintApp.setDrawType(DrawType.Pen);
@@ -206,7 +205,6 @@ public class WhiteBoardClient extends JFrame implements WindowListener {
 		 * Button selected draw Line
 		 */
 		JButton btnLine = new JButton("Line");
-		btnLine.setIcon(new ImageIcon(WhiteBoardClient.class.getResource("/Img/2.gif")));
 		btnLine.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 //				selectShap = "Line";
@@ -222,6 +220,7 @@ public class WhiteBoardClient extends JFrame implements WindowListener {
 			public void actionPerformed(ActionEvent arg0) {
 //				selectShap = "Rectangle";
 				paintApp.setDrawType(DrawType.Rectangle);
+				
 			}
 		});
 		
@@ -467,6 +466,10 @@ public class WhiteBoardClient extends JFrame implements WindowListener {
 				selectColor = Color.lightGray;
 			}
 		});
+		
+		lblNetVe = new JLabel("Nét vẽ");
+		lblNetVe.setForeground(Color.WHITE);
+		lblNetVe.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GroupLayout gl_pnlColor = new GroupLayout(pnlColor);
 		gl_pnlColor.setHorizontalGroup(
 			gl_pnlColor.createParallelGroup(Alignment.LEADING)
@@ -487,21 +490,28 @@ public class WhiteBoardClient extends JFrame implements WindowListener {
 					.addComponent(btnC_Pink, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnC_LightGray, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(658))
+					.addGap(10)
+					.addComponent(lblNetVe)
+					.addGap(908))
 		);
 		gl_pnlColor.setVerticalGroup(
 			gl_pnlColor.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnlColor.createSequentialGroup()
-					.addContainerGap()
 					.addGroup(gl_pnlColor.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnC_LightGray, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnC_Blue, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnC_Red, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnC_Green, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnC_Cyan, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnC_DarkGray, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnC_Orange, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnC_Pink, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_pnlColor.createSequentialGroup()
+							.addContainerGap()
+							.addGroup(gl_pnlColor.createParallelGroup(Alignment.LEADING)
+								.addComponent(btnC_LightGray, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnC_Blue, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnC_Red, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnC_Green, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnC_Cyan, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnC_DarkGray, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnC_Orange, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnC_Pink, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(gl_pnlColor.createSequentialGroup()
+							.addGap(19)
+							.addComponent(lblNetVe)))
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		pnlColor.setLayout(gl_pnlColor);
@@ -697,14 +707,14 @@ public class WhiteBoardClient extends JFrame implements WindowListener {
 	@Override
 	public void windowClosed(WindowEvent arg0) {
 		// TODO Auto-generated method stub
-		client.messageLogout();
-		client.disconnect();
+		
 	}
 
 	@Override
 	public void windowClosing(WindowEvent arg0) {
 		// TODO Auto-generated method stub
-		
+		client.messageLogout();
+		client.disconnect();
 	}
 
 	@Override

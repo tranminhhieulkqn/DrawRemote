@@ -1,7 +1,6 @@
 package Frame;
 
 import java.awt.BorderLayout;
-import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -14,38 +13,31 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.util.ArrayList;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
-import Object.ChatMessage;
 import Object.ColorChoose;
 import Object.DrawType;
 import Object.OpenFile;
 import Object.SaveFile;
+import Object.User;
 import Paint.PaintApp;
-import Shape.Paint;
-import Socket.Client;
 import Socket.Server;
-import javax.swing.JList;
-import javax.swing.AbstractListModel;
 
 public class WhiteBoardServer extends JFrame implements WindowListener{
 
@@ -189,7 +181,6 @@ public class WhiteBoardServer extends JFrame implements WindowListener{
 		 * Button selected draw Point
 		 */
 		JButton btnPoint = new JButton("Point");
-		btnPoint.setIcon(new ImageIcon(WhiteBoardClient.class.getResource("/Img/1.gif")));
 		btnPoint.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				paintApp.setDrawType(DrawType.Pen);
@@ -200,7 +191,6 @@ public class WhiteBoardServer extends JFrame implements WindowListener{
 		 * Button selected draw Line
 		 */
 		JButton btnLine = new JButton("Line");
-		btnLine.setIcon(new ImageIcon(WhiteBoardClient.class.getResource("/Img/2.gif")));
 		btnLine.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				paintApp.setDrawType(DrawType.Line);
