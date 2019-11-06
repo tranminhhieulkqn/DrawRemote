@@ -91,6 +91,15 @@ public class Server {
 			
 		}
 	}
+	public void kickOutUser(String user) {
+		for (ClientThread clientThread : listClient) {
+			if(clientThread.username.trim().equals(user.trim())) {
+				clientThread.stop_();
+				clientThread.disconnect();
+				break;
+			}
+		}
+	}
 	public void showListUser() {
 		board.model.clear();
 		for (ClientThread clientThread : listClient) {
@@ -267,9 +276,10 @@ public class Server {
 				
 		        int response = JOptionPane.showConfirmDialog(null, username +" want to join in?", "Login confirmation required", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 	            if (response == JOptionPane.NO_OPTION) {
-					System.out.println(username +" quit!");
-					msg = "Server does not allow user : "+ username +" to join";
+//					System.out.println(username +" kicked out");
+					msg = "Server does not allow user \""+ username +"\" to join";
 					showMessage(msg);
+					stop_();
 					return false;
 	            } else if (response == JOptionPane.YES_OPTION || response == JOptionPane.CLOSED_OPTION) {
 	            	showMessage(username + " just connected.");

@@ -23,6 +23,7 @@ import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -605,6 +606,24 @@ public class WhiteBoardServer extends JFrame implements WindowListener{
 		);
 		
 		listUser = new JList<String>(model);
+		listUser.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+		        if (arg0.getClickCount() == 2) {
+		        	String userSelect = listUser.getSelectedValue();
+		        	int response = JOptionPane.showConfirmDialog(null,
+                            "Do you want to keep kicking out \""+ userSelect +"\"?", "Confirm",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.QUESTION_MESSAGE);
+                    
+					if(response == JOptionPane.YES_OPTION) {
+//    		        	System.out.print(listUser.getSelectedValue());
+    		        	server.kickOutUser(userSelect);
+    		        	server.showListUser();
+		        	}
+		        }
+			}
+		});
 		scrollPane.setViewportView(listUser);
 		panelListUser.setLayout(gl_panelListUser);
 		GroupLayout gl_panelManagement = new GroupLayout(panelManagement);
