@@ -633,8 +633,7 @@ public class WhiteBoardServer extends JFrame implements WindowListener{
 		validate();
 	}
 	
-	// append message to the two JTextArea
-	// position at the end
+	
 	public void appendChatRoom(String str) {
 		textAreaChat.append(str);
 		textAreaChat.setCaretPosition(textAreaChat.getText().length() - 1);
