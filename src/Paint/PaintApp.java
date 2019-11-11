@@ -6,18 +6,15 @@ import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
-import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 import javax.swing.JComponent;
 
-import com.sun.javafx.geom.Rectangle;
 
 import Frame.WhiteBoardClient;
 import Object.DrawType;
 import Object.GraphicAdapter;
 import Object.OpenFile;
-import Object.User;
 import Shape.Class2D;
 import Shape.MyCircle;
 import Shape.MyLine;
@@ -30,27 +27,32 @@ import Shape.Paint;
 import Socket.Client;
 import Socket.Server;
 
+/**
+ * @author MinhHieu, VanAnh
+ * Class used to draw
+ * The class tried to add a mouse event
+ * Because it is still limited to call the two client and server classes, it is necessary to distinguish to create suport functions
+ * 
+ */
 @SuppressWarnings("serial")
 public class PaintApp extends JComponent {
-	public Point startDrag, endDrag;
+	public Point startDrag, endDrag; //Get the start and end points of the mouse
 	public Paint ptemp;
 	public BasicStroke basicStroke;
 	public ArrayList<Paint> listPaint = new ArrayList<Paint>();
 	public ArrayList<Paint> listPaintServer = new ArrayList<Paint>();;
 	private DrawType drawType;
-	
-
 	private Client client = null;
 	public String user = null;
 	private Server server = null;
 	
+	//Data Encapsulation
 	public Client getClient() {
 		return client;
 	}
 	public void setClient(Client client) {
 		this.client = client;
 		this.user = client.getUsername();
-//		System.out.print(user);
 	}
 	public Server getServer() {
 		return server;
@@ -59,7 +61,6 @@ public class PaintApp extends JComponent {
 		this.user = "Server";
 		this.server = server;
 	}
-
 	public DrawType getDrawType() {
 		return drawType;
 	}
@@ -67,37 +68,51 @@ public class PaintApp extends JComponent {
 		this.drawType = drawType;
 	}
 	
-	void supportSend(ArrayList<Paint> listPaint) {
-		if(client != null) {
-			client.sendListPaint(listPaint);
-//			System.out.print("=======================================================" + "\n");
-//			for (Paint paint : listPaint) {
-//				System.out.print(paint.toString()+ "*****" + paint.getUser() + "\n");
-//			}
-		}
-		if(server != null) {
-//			System.out.print("=======================================================" + "\n");
-//			for (Paint paint : listPaint) {
-//				System.out.print(paint.toString() + "\n");
-//			}
-			server.sendListPaint(listPaint);
-		}
-	}
+	//Self create functions
+	/**
+	 * @param paint
+	 * Support for deleting in any list?
+	 */
 	void supportRemove(Paint paint) {
 		if(server == null) listPaint.remove(paint);
 		if(server != null) listPaintServer.remove(paint);
 	}
+	/**
+	 * @param paint
+	 * Support for adding in any list?
+	 */
 	void supportAdd(Paint paint) {
 		if(server == null) listPaint.add(paint);
 		if(server != null) listPaintServer.add(paint);
 	}
+	/**
+	 * @param listPaint
+	 * Determine whether the current form is a Server or a new Client submitted appropriately
+	 */
+	void supportSend(ArrayList<Paint> listPaint) {
+		if(client != null) {
+			client.sendListPaint(listPaint);
+		}
+		if(server != null) {
+			server.sendListPaint(listPaint);
+		}
+	}
+	
+	/**
+	 * @param user
+	 * Display the username of the brush stroke on the form
+	 */
 	void showNetVe(String user) {
 		if(client != null) client.showNetVe(user);
 		if(server != null) server.showNetVe(user);
 	}
+	
+	//Constructor
 	public PaintApp() {
-		this.drawType = DrawType.Pen;
+		this.drawType = DrawType.Pen;//Set ogrinal DrawType
+
 		this.addMouseListener(new MouseAdapter() {
+			//Attach mousePressed
 			public void mousePressed(MouseEvent e) {
 				startDrag = new Point(e.getX(), e.getY());
 				endDrag = startDrag;
@@ -123,6 +138,7 @@ public class PaintApp extends JComponent {
 				supportSend(listPaint);
 				repaint();
 			}
+			//Attach mouseReleased
 			public void mouseReleased(MouseEvent e) {
 				Paint obj;
 	        	Point p = new Point(e.getX(), e.getY());
@@ -190,7 +206,7 @@ public class PaintApp extends JComponent {
 				default:
 					break;
 				}
-	        	//Kết thúc phiên rê chuột đặt lại đồng thời repaint
+	        	//End of the mouseover event then repaint
 	        	startDrag = null;
 	        	endDrag = null;
 	        	supportSend(listPaint);
@@ -199,6 +215,7 @@ public class PaintApp extends JComponent {
 	      });
 
 		this.addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
 	        public void mouseDragged(MouseEvent e) {
 	        	endDrag = new Point(e.getX(), e.getY());
 	        	Paint obj;
@@ -232,6 +249,9 @@ public class PaintApp extends JComponent {
 	      });
 		
 	}
+	/**
+	 * Main drawing function
+	 */
 	public void paint(Graphics g) {
 		GraphicAdapter g2 = new GraphicAdapter() { };
 		g2.setGraphicAdapter(g);

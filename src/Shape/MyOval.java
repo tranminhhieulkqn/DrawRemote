@@ -11,6 +11,11 @@ import Frame.WhiteBoardClient;
 import Object.GraphicAdapter;
 
 
+/**
+ * @author VanAnh
+ * Create object Oval and override from class Class2D
+ *
+ */
 public class MyOval extends  Class2D implements Serializable{
 	/**
 	 * 
@@ -20,40 +25,63 @@ public class MyOval extends  Class2D implements Serializable{
 	private Color linecolor = null;
 	private Color color = null;
 	
-	public MyOval() {
+	
+	//Data Encapsulation
+	public Ellipse2D getElip2d() {
+		return elip2d;
+	}
+	public void setElip2d(Ellipse2D elip2d) {
+		this.elip2d = elip2d;
+	}
+	public Color getLineColor() {
+		return linecolor;
+	}
+	public void setLineColor(Color linecolor) {
+		this.linecolor = linecolor;
+	}
+	public Color getColor() {
+		return color;
+	}
+	public void setColor(Color color) {
+		this.color = color;
 	}
 	
+	
+	//Constructor
+	public MyOval() {
+		// TODO Auto-generated constructor stub
+	}
 	public MyOval(Ellipse2D e) {
+		// TODO Auto-generated constructor stub
 		this.elip2d = e;
 	}
 	
 	public MyOval(Ellipse2D e, Color lc) {
+		// TODO Auto-generated constructor stub
 		this.elip2d = e;
 		this.linecolor = lc;
 	}
 	
 	public MyOval(Ellipse2D e, Color lc, Color c) {
+		// TODO Auto-generated constructor stub
 		this.elip2d = e;
 		this.linecolor = lc;
 		this.color = c;
 	}
+	
+	//Self created function
+	public void makeOval(int x, int y, int w, int h) {
+		Ellipse2D r = new Ellipse2D.Float(x, y, w, h);
+		this.setElip2d(r);
+	}
+	
+	//Functions Override
 	@Override
 	public void makeObject(Point startDrag, Point endDrag) {
 		setLineColor(WhiteBoardClient.selectColor);
 		Ellipse2D r = new Ellipse2D.Float(Math.min(startDrag.x, endDrag.x), Math.min(startDrag.y, endDrag.y), Math.abs(startDrag.x - endDrag.x), Math.abs(startDrag.y - endDrag.y));
 	    this.setElip2d(r);
 	}
-	
-	public void makeOval(int x, int y, int w, int h) {
-		Ellipse2D r = new Ellipse2D.Float(x, y, w, h);
-		this.setElip2d(r);
-	}
-	
-	/*public void makeOval(Point startDrag, MouseEvent e) {
-		Ellipse2D r = new Ellipse2D.Float(Math.min(startDrag.x, e.getX()), Math.min(startDrag.y, e.getY()), Math.abs(startDrag.x - e.getX()), Math.abs(startDrag.y - e.getY()));
-	    this.setElip2d(r);
-	}*/
-	
 	@Override
     public void draw(GraphicAdapter g) {
 		if(getColor() == null){
@@ -78,7 +106,6 @@ public class MyOval extends  Class2D implements Serializable{
     public void move(Point startDrag, Point endDrag){
     	this.getElip2d().setFrame(getElip2d().getX() + endDrag.x - startDrag.x,this.getElip2d().getY() + endDrag.y - startDrag.y,this.getElip2d().getWidth(), this.getElip2d().getHeight());
     }
-    
     @Override
     public void writetoFile(BufferedWriter b){
     	try {
@@ -94,24 +121,4 @@ public class MyOval extends  Class2D implements Serializable{
 			e.printStackTrace();
 		}
     }
-    
-	public Ellipse2D getElip2d() {
-		return elip2d;
-	}
-	public void setElip2d(Ellipse2D elip2d) {
-		this.elip2d = elip2d;
-	}
-	public Color getLineColor() {
-		return linecolor;
-	}
-	public void setLineColor(Color linecolor) {
-		this.linecolor = linecolor;
-	}
-	public Color getColor() {
-		return color;
-	}
-	public void setColor(Color color) {
-		this.color = color;
-	}
-    
 }

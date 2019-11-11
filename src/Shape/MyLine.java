@@ -9,16 +9,21 @@ import java.io.Serializable;
 import Frame.WhiteBoardClient;
 import Object.GraphicAdapter;
 
+/**
+ * @author MinhHieu
+ * Use class Line and extends from Class1D
+ * Create Object MyLine to draw Line
+ * 
+ */
 public class MyLine extends Class1D implements Serializable{
 	/**
 	 * 
 	 */
-	
 	private static final long serialVersionUID = -7449909779562255476L;
-	
 	private Line line;
-	
 	private Color color;
+	
+	//Data Encapsulation
 	public Color getColor() {
 		return color;
 	}
@@ -32,8 +37,9 @@ public class MyLine extends Class1D implements Serializable{
 		this.line = line;
 	}
 	
-	public MyLine(){
-		
+	//Constructor
+	public MyLine() {
+		// TODO Auto-generated constructor stub
 	}
 	public MyLine(Line ln){
 		this.line = ln;
@@ -46,16 +52,16 @@ public class MyLine extends Class1D implements Serializable{
 		this.color = c;
 	}
 	
+	//Functions override
 	@Override
 	public void draw(GraphicAdapter g){
 		g.getGraphicAdapter().setColor(getColor());
 		g.getGraphicAdapter().drawLine(getLine().startX.x, getLine().startX.y, getLine().startY.x, getLine().startY.y);
 	}
-	
     @Override
     public boolean contains(Point p) {
     	//return this.getLine().contains(p.x, p.y);
-    	return true;
+    	return true;//Not checked again
     }
     @Override
     public void move(Point startDrag, Point endDrag){
@@ -64,7 +70,6 @@ public class MyLine extends Class1D implements Serializable{
     	Line ln = new Line(startPoint, endPoint);
     	this.setLine(ln);
     }
-    
     @Override
     public void writetoFile(BufferedWriter b){
     	try {
@@ -75,7 +80,6 @@ public class MyLine extends Class1D implements Serializable{
 			e.printStackTrace();
 		}
     }
-    
     @Override
     public void makeObject(Point startDrag, Point endDrag){
     	Line ln = new Line(startDrag, endDrag);
@@ -83,5 +87,4 @@ public class MyLine extends Class1D implements Serializable{
     	setColor(WhiteBoardClient.selectColor);
     }
 
-	
 }

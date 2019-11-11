@@ -10,6 +10,10 @@ import java.io.Serializable;
 import Frame.WhiteBoardClient;
 import Object.GraphicAdapter;
 
+/**
+ * @author VanAnh, MinhHieu
+ *
+ */
 public class MyRectangle extends Class2D implements Serializable{
 	/**
 	 * 
@@ -19,22 +23,48 @@ public class MyRectangle extends Class2D implements Serializable{
 	private Color lineColor;
 	private Color color = null;
 	
+	//Data Encapsulation
+	public Rectangle getRect() {
+		return rect;
+	}
+	public void setRect(Rectangle rect) {
+		this.rect = rect;
+	}
+	public Color getLineColor() {
+		return lineColor;
+	}
+	public void setLineColor(Color lineColor) {
+		this.lineColor = lineColor;
+	}
+	public Color getColor() {
+		return color;
+	}
+	public void setColor(Color color) {
+		this.color = color;
+	}
+	
+	//Constructor
 	public MyRectangle() {
-		
+		// TODO Auto-generated constructor stub
 	}
 	public MyRectangle(Rectangle r) {
+		// TODO Auto-generated constructor stub
 		this.rect = r;
 	}
 	public MyRectangle(Rectangle r, Color lc) {
+		// TODO Auto-generated constructor stub
 		this.rect = r;
 		this.lineColor = lc;
 	}
 	public MyRectangle(Rectangle r, Color lc, Color c) {
+		// TODO Auto-generated constructor stub
 		this.rect = r;
 		this.lineColor = lc;
 		this.color = c;
 	}
 	
+	//Functions override
+	@Override
 	public void makeObject(Point startDrag, Point endDrag) {
 		setLineColor(WhiteBoardClient.selectColor);
 		Rectangle r = new Rectangle(Math.min(startDrag.x, endDrag.x), Math.min(startDrag.y, endDrag.y), Math.abs(startDrag.x - endDrag.x), Math.abs(startDrag.y - endDrag.y));	
@@ -45,12 +75,6 @@ public class MyRectangle extends Class2D implements Serializable{
 		Rectangle r = new Rectangle(x, y, w, h);
 	    this.setRect(r);
 	}
-	
-	/*public void makeRectangle(Point startDrag, MouseEvent e) {
-		Rectangle r = new Rectangle(Math.min(startDrag.x, e.getX()), Math.min(startDrag.y, e.getY()), Math.abs(startDrag.x - e.getX()), Math.abs(startDrag.y - e.getY()));
-	    this.setRect(r);
-	}*/
-	
     @Override
 	public void draw(GraphicAdapter g) {
     	if(getColor() == null){
@@ -76,7 +100,7 @@ public class MyRectangle extends Class2D implements Serializable{
     	Rectangle r = new Rectangle(this.getRect().x + (endDrag.x - startDrag.x),this.getRect().y + (endDrag.y - startDrag.y), this.getRect().width, this.getRect().height);
     	this.setRect(r);
     }
-
+    @Override
     public void writetoFile(BufferedWriter b){
     	try {
 			b.write(getClass().getSimpleName() + ";");
@@ -91,25 +115,6 @@ public class MyRectangle extends Class2D implements Serializable{
 			e.printStackTrace();
 		}
     }
-    
-	public Rectangle getRect() {
-		return rect;
-	}
-	public void setRect(Rectangle rect) {
-		this.rect = rect;
-	}
-	public Color getLineColor() {
-		return lineColor;
-	}
-	public void setLineColor(Color lineColor) {
-		this.lineColor = lineColor;
-	}
-	public Color getColor() {
-		return color;
-	}
-	public void setColor(Color color) {
-		this.color = color;
-	}
 
 }
 
