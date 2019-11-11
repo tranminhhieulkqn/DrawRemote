@@ -1,26 +1,24 @@
 package Socket;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import javax.swing.AbstractListModel;
 import javax.swing.JOptionPane;
 
 import Frame.WhiteBoardServer;
 import Object.ChatMessage;
 import Shape.Paint;
 
-/*
- * The server that can be run both as a console application or a GUI
+/**
+ * @author MinhHieu, TuDuyen
+ * The support layer for server sockets
+ * WhiteBoardServer can use to manage Client
+ * 
  */
 public class Server {
 	private int 					port = 1024;
@@ -30,33 +28,43 @@ public class Server {
 	private SimpleDateFormat 		simpleDateFormat;
 	private boolean 				keepGoing;
 	private String					msg;//To show message to WhileBoardServer
-	private ObjectInputStream 		sInput;
-	private ObjectOutputStream 		sOutput;
 
+	//Constructor
+	public Server() {
+		// TODO Auto-generated constructor stub
+	}
+	/**
+	 * @param port
+	 * @param board
+	 */
 	public Server(int port, WhiteBoardServer board) {
+		// TODO Auto-generated constructor stub
 		this.board 			= board;
 		this.port 			= port;
 		simpleDateFormat 	= new SimpleDateFormat("HH:mm");
 		listClient 			= new ArrayList<ClientThread>();
 	}
 	
+	/**
+	 * 
+	 */
 	public void start() {
 		keepGoing = true;
-		/* create socket server and wait for connection requests */
+		//Create socket server and wait for connection requests
 		try 
 		{
 			ServerSocket serverSocket = new ServerSocket(port);
 			showMessage("Server waiting for Clients on port " + port + "...");
 			
-			// infinite loop to wait for connections
+			//Infinite loop to wait for connections
 			while(keepGoing) 
 			{				
-				Socket socket = serverSocket.accept();  	// accept connection
-				// if I was asked to stop
+				Socket socket = serverSocket.accept();  	// Accept connection
+				//If I was asked to stop
 				if(!keepGoing)// Press Stop or close frame
 					break;
-				ClientThread clientThread = new ClientThread(socket);  // make a thread of it
-				listClient.add(clientThread);									// save it in the ArrayList
+				ClientThread clientThread = new ClientThread(socket);  //Make a thread of it
+				listClient.add(clientThread);									//Save it in the ArrayList
 				clientThread.start();
 				broadcast(board.paintApp.listPaint);
 				showListUser();
@@ -79,7 +87,7 @@ public class Server {
 		}
 	}		
     /*
-     * For the GUI to stop the server
+     * For the WhiteBroadServer to stop the server
      */
 	@SuppressWarnings("resource")
 	public void stop() {
@@ -91,6 +99,10 @@ public class Server {
 			
 		}
 	}
+	/**
+	 * @param user
+	 * Remove the user from the list, stopping his thread
+	 */
 	public void kickOutUser(String user) {
 		for (ClientThread clientThread : listClient) {
 			if(clientThread.username.trim().equals(user.trim())) {
@@ -100,6 +112,9 @@ public class Server {
 			}
 		}
 	}
+	/**
+	 * Display user list on JList
+	 */
 	public void showListUser() {
 		board.model.clear();
 		for (ClientThread clientThread : listClient) {
@@ -107,48 +122,53 @@ public class Server {
 		}
 		
 	}
+	/**
+	 * @param user
+	 * Display user name when dragging the mouse
+	 */
 	public void showNetVe(String user) {
 		String info = "Nét vẽ của " + user;
 		board.lblNetVe.setText(info);
 	}
-	/*
-	 * Display an event (not a message) to the console or the GUI
+	/**
+	 * @param msg
+	 * Display notification or event on the form
 	 */
 	private void showMessage(String msg) {
 		board.appendEvent(simpleDateFormat.format(new Date()) + " " + msg + "\n");
 	}
+	/**
+	 * @param chatMessage
+	 * Display the message on the form
+	 */
 	private void showChat(ChatMessage chatMessage) {
 		board.appendChatRoom(simpleDateFormat.format(new Date()) + " " + chatMessage.getMessage() + "\n");
 	}
-	/*
-	 *  to broadcast a message to all Clients
+	/**
+	 * @param listPaint
+	 * Broadcast the brush list to all clients
 	 */
-	public void sendListPaint(ArrayList<Paint> listPaint) {
-		broadcast(listPaint);
-	}
 	private synchronized void broadcast(ArrayList<Paint> listPaint) {
 		for(int i = listClient.size(); --i >= 0;) {
 			ClientThread ct = listClient.get(i);
-			//ct.disconnect();
-			// try to write to the Client if it fails remove it from the list
 			if(!ct.sendListPaint(listPaint)) {
-//				System.out.print("=======================================================" + "\n");
-//				for (Paint paint : listPaint) {
-//					System.out.print(paint.toString() + "\n");
-//				}
 				listClient.remove(i);
 				showMessage("Disconnected Client " + ct.username + " removed from list.");
 			}
 		}
-		
-//		for (Paint paint : listPaint) {
-//			System.out.print("Server : " + paint.toString()+ "\n");
-//		}
-//		for (ClientThread clientThread : listClient) {
-//			clientThread.sendListPaint(listPaint);
-//		}
-//		showMessage("Có broadcast rồi mà!");
 	}
+	/**
+	 * @param listPaint
+	 * Support callback broadcast function
+	 */
+	public void sendListPaint(ArrayList<Paint> listPaint) {
+		broadcast(listPaint);
+	}
+	/**
+	 * @param chatMessage
+	 * Broadcast a message to all clients
+	 */
+	@SuppressWarnings("unused")
 	private synchronized void broadcastChatMessage(ChatMessage chatMessage) {
 		for(int i = listClient.size(); --i >= 0;) {
 			ClientThread ct = listClient.get(i);
@@ -157,14 +177,16 @@ public class Server {
 				showMessage("Disconnected Client " + ct.username + " removed from list.");
 			}
 		}
-	}
-
-	// for a client who logoff using the LOGOUT message
+	}	
+	/**
+	 * @param id
+	 * Delete the logged out client
+	 */
 	synchronized void remove(int id) {
-		// scan the array list until we found the Id
+		//Find in the array list until we found the Id
 		for(int i = 0; i < listClient.size(); ++i) {
 			ClientThread clientThread = listClient.get(i);
-			// found it
+			//Found it
 			if(clientThread.id == id) {
 				listClient.remove(i);
 				return;
@@ -172,13 +194,14 @@ public class Server {
 		}
 	}
 	
-
-	/** One instance of this thread will run for each client */
+	/**
+	 * @author MinhHieu
+	 * One instance of this thread will run for each client
+	 */
 	class ClientThread extends Thread {
 		private int 				id;
 		private String 				username;
 		private ArrayList<Paint> 	listPaint;
-		private String 				date;
 		private Socket 				socket;
 		private ObjectInputStream 	sInput;
 		private ObjectOutputStream 	sOutput;
@@ -188,44 +211,22 @@ public class Server {
 		public ClientThread(Socket socket) {
 			id = ++uniqueId;
 			this.socket = socket;
-			//showMessage("Thread trying to create Object Input/Output Streams");
-//			try
-//			{
-//				// create output first
-//				sOutput = new ObjectOutputStream(socket.getOutputStream());
-//				sInput  = new ObjectInputStream(socket.getInputStream());
-//				// read the username
-//				username = (String)sInput.readObject();
-//				showMessage(username + " just connected.");
 				if(!loginNotification()) {
 					remove(id);
-//					disconnect();
 				}
-//			}
-//			catch (IOException e) {
-//				showMessage("Exception creating new Input/output Streams: " + e);
-//				return;
-//			}
-//			// have to catch ClassNotFoundException
-//			// but I read a String, I am sure it will work
-//			catch (ClassNotFoundException e) {
-//			}
-            date = new Date().toString() + "\n";
 		}
-
 		@SuppressWarnings("unchecked")
 		@Override
 		public void run() {
 			// TODO Auto-generated method stub
 			// to loop until LOGOUT
-//			boolean keepGoing = true;
 			String msgTemp;
 			ChatMessage chatTemp;
 			while(keepGoing_) {
 				try {
 					Object temp = sInput.readObject();
 					if(sInput == null || sOutput == null || socket == null) break;
-					// Nhận String "Logout" từ Client để logout
+					//Get String "Logout" from Client to logout
 					try {
 						msgTemp = (String)temp;
 						if(msgTemp.equals("Logout")) {
@@ -236,14 +237,14 @@ public class Server {
 					} catch (Exception e) {
 						// TODO: handle exception
 					}
-					// Thử ép kiểu sang ChatMessage nếu được broadcast
+					//Try casting to ChatMessage if possible then broadcast
 					try {
 						chatTemp = (ChatMessage)temp;
 						showChat(chatTemp);
 					} catch (Exception e) {
 						// TODO: handle exception
 					}
-					// Thử ép kiểu listPaint nhận giá trị
+					//Try to cast listPaint to get value if possible then broadcast
 					try {
 						listPaint = (ArrayList<Paint>)temp;
 						board.paintApp.listPaint = new ArrayList<Paint>(listPaint);
@@ -262,8 +263,7 @@ public class Server {
 				}
 				
 			}
-			// remove myself from the arrayList containing the list of the
-			// connected Clients
+			// Remove myself from the arrayList containing the list of the connected Clients
 			remove(id);
 			disconnect();
 		}
@@ -271,7 +271,9 @@ public class Server {
 			// TODO Auto-generated method stub
 			keepGoing_ = false;
 		}
-		// try to close everything
+		/**
+		 * Try to close everything
+		 */
 		public void disconnect() {
 			try {
 				if(sInput != null) sInput.close();
@@ -285,6 +287,10 @@ public class Server {
 			}
 		}
 
+		/**
+		 * @return
+		 * Ask when login request from Client
+		 */
 		public boolean loginNotification() {
 			try {
 				// create output first
@@ -295,7 +301,6 @@ public class Server {
 				
 		        int response = JOptionPane.showConfirmDialog(null, username +" want to join in?", "Login confirmation required", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 	            if (response == JOptionPane.NO_OPTION) {
-//					System.out.println(username +" kicked out");
 					msg = "Server does not allow user \""+ username +"\" to join";
 					showMessage(msg);
 					stop_();
@@ -310,11 +315,14 @@ public class Server {
 				return false;
 			}
 	    }
-		/*
-		 * Write a String to the Client output stream
+
+		/**
+		 * @param chatMessage
+		 * @return
+		 * Write a ChatMessage to the Client output stream
 		 */
 		private boolean sendMessageChat(ChatMessage chatMessage) {
-			// Chỉ gửi tin nhắn khi kết nối đã được thiết lập
+			//If Client is still connected send the message to it
 			if(!socket.isConnected()) {
 				disconnect();
 				return false;
@@ -329,8 +337,13 @@ public class Server {
 			}
 			return true;
 		}
+		/**
+		 * @param listPaint
+		 * @return
+		 * Write a ArrayList<Paint> to the Client output stream
+		 */
 		private boolean sendListPaint(ArrayList<Paint> listPaint) {
-			// if Client is still connected send the message to it
+			//If Client is still connected send the listPaint to it
 			if(!socket.isConnected()) {
 				disconnect();
 				return false;

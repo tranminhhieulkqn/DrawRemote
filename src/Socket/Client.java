@@ -9,17 +9,27 @@ import java.util.Date;
 
 import Frame.WhiteBoardClient;
 import Object.ChatMessage;
-import Object.User;
 import Shape.Paint;
 
-/*
- * The Client that can be run both as a console or a WhiteBoardClient
+/**
+ * @author MinhHieu, TuDuyen
+ * The support layer for client sockets
+ * WhiteBoardClient can use
+ * 
  */
 public class Client{
 	private String 					serverHost;
 	private int 					port;
 	private String 					username;	//Username Client
 	private SimpleDateFormat 		simpleDateFormat = new SimpleDateFormat("HH:mm");
+	private ObjectInputStream 		sInput;		// to read from the socket
+	private ObjectOutputStream 		sOutput;	// to write on the socket
+	private Socket 					socket;
+	private ArrayList<Paint>		listPaint;
+	private String 					msg;		//Show message status
+	private WhiteBoardClient 		board = null;
+	
+	//Data encapsulation
 	public String getUsername() {
 		return username;
 	}
@@ -28,23 +38,30 @@ public class Client{
 		this.username = username;
 	}
 
-	private ObjectInputStream 		sInput;		// to read from the socket
-	private ObjectOutputStream 		sOutput;	// to write on the socket
-	private Socket 					socket;
-	private ArrayList<Paint>		listPaint;
-	private String 					msg;		//Show message status
-
-	private WhiteBoardClient board = null;
 	
+	
+	//Constructor
+	public Client() {
+		// TODO Auto-generated constructor stub
+	}
+	/**
+	 * @param serverHost
+	 * @param port
+	 * @param username
+	 * @param board
+	 */
 	public Client(String serverHost, int port, String username, WhiteBoardClient board) {
+		// TODO Auto-generated constructor stub
 		this.serverHost = serverHost;
 		this.port 		= port;
 		this.username	= username;
 		this.board 		= board;
 	}
 	
-	/*
-	 * To start the dialog
+	
+	//Self create functions
+	/**
+	 * @return
 	 */
 	public boolean start() {
 		//Create connection to server.
@@ -71,8 +88,6 @@ public class Client{
 		
 		// Create thread to listen from the server 
 		new ListenFromServer().start();
-		// Send our username to the server this is the only message that we
-		// will send as a String. All other messages will be ChatMessage objects
 		try {
 			sOutput.writeObject(username);
 		} catch (IOException e) {
@@ -82,14 +97,27 @@ public class Client{
 			disconnect();
 			return false;
 		}
-		//After success
 		return true;
 	}
 
-	//To send message to the WhiteBoardClient
+	/**
+	 * @param msg
+	 * Display messages or notifications on the Client form
+	 */
 	private void showMessage(String msg) {
 		board.append(simpleDateFormat.format(new Date()) + " "+ msg + "\n");
 	}
+	/**
+	 * @param user
+	 * Displays the owner of a brush stroke on the form
+	 */
+	public void showNetVe(String user) {
+		String info = "Nét vẽ của " + user;
+		board.lblNetVe.setText(info);
+	}
+	/**
+	 * Send string "Logout" to log out of server
+	 */
 	public void messageLogout() {
 		try {
 			if(sInput == null || sOutput == null || socket == null) disconnect(); 
@@ -100,6 +128,10 @@ public class Client{
 			showMessage(msg);
 		}
 	}
+	/**
+	 * @param chatMessage
+	 * Send a message from the Client
+	 */
 	public void sendMessageChat(ChatMessage chatMessage) {
 		try {
 			if(sInput == null || sOutput == null || socket == null) {
@@ -111,11 +143,12 @@ public class Client{
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-//			msg = "Error to write to Server - IOException : " + e.getMessage();
-//			showMessage(msg);
 		}
 	}
-	//To send list Paint to the server
+	/**
+	 * @param listPaint
+	 * Send the drawing list to the server
+	 */
 	public void sendListPaint(ArrayList<Paint> listPaint) {
 		try {
 			if(sInput == null || sOutput == null || socket == null) {
@@ -124,17 +157,12 @@ public class Client{
 			else sOutput.writeObject(listPaint); 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-//			msg = "Error to write to Server - IOException : " + e.getMessage();
-//			showMessage(msg);
 		}
 	}
 	
-	public void showNetVe(String user) {
-		String info = "Nét vẽ của " + user;
-		board.lblNetVe.setText(info);
-	}
+	
 
-	/*
+	/**
 	 * When something goes wrong
 	 * Close the Input/Output streams and disconnect not much to do in the catch clause
 	 */
@@ -151,9 +179,10 @@ public class Client{
 		board.connectionFailed();
 	}
 
-	/*
-	 * a class that waits for the message from the server and append them to the JTextArea
-	 * if we have a WhiteBoardClient or simply System.out.println() it in console mode
+	/**
+	 * Class use to waits for: 
+	 * The list drawing paint from server and repaint them to the paintApp
+	 * The message from the server and append them to the JTextArea
 	 */
 	class ListenFromServer extends Thread {
 		@SuppressWarnings("unchecked")
@@ -168,7 +197,7 @@ public class Client{
 				try {
 					Object temp = sInput.readObject();
 					
-					// Thử ép kiểu sang ChatMessage nếu được broadcast
+					//Try casting style to ChatMessage
 					try {
 						chatTemp = (ChatMessage)temp;
 						showMessage(chatTemp.getMessage());
@@ -176,20 +205,13 @@ public class Client{
 						// TODO: handle exception
 					}
 					
+					//Try casting style to ArratList<Paint>
 					try {
-							listPaint = (ArrayList<Paint>)temp;
-							
-		//					if(!board.paintApp.listPaint.equals(listPaint))
-							board.paintApp.listPaint = listPaint;
-		//					int k = 1;
-//							showMessage("==================================Đã nhận từ Server");
-//							System.out.print("=============================================" + "\n");
-//							for (Paint paint : listPaint) {
-//								
-//								System.out.print("Client : " + paint.toString()+ "\n");
-//							}
-							board.paintApp.repaint();
-							board.repaint();
+						//Get list of brush strokes and repaint
+						listPaint = (ArrayList<Paint>)temp;
+						board.paintApp.listPaint = listPaint;
+						board.paintApp.repaint();
+						board.repaint();
 					} catch (Exception e) {
 						// TODO: handle exception
 					}
@@ -201,9 +223,7 @@ public class Client{
 					board.connectionFailed();
 					break;
 				}
-						
-								
-				
+					
 			}
 		}
 	}
