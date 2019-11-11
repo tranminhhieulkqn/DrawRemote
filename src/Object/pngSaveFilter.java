@@ -4,6 +4,10 @@ import java.io.File;
 
 import javax.swing.filechooser.FileFilter;
 
+/**
+ * @author MinhHieu, TuDuyen
+ * Support save file to PNG
+ */
 public class pngSaveFilter extends FileFilter
 { 
 	public boolean accept(File f)

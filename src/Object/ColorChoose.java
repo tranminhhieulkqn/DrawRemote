@@ -13,6 +13,10 @@ import javax.swing.event.ChangeListener;
 
 import Frame.WhiteBoardClient;
 
+/**
+ * @author Internet source
+ *
+ */
 @SuppressWarnings("serial")
 public class ColorChoose extends JFrame implements ChangeListener {
 	

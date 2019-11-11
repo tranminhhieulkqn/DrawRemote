@@ -2,8 +2,6 @@ package Object;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Shape;
-import java.awt.Stroke;
 import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -16,9 +14,12 @@ import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
-import Frame.WhiteBoardClient;
 import Shape.Paint;
 
+/**
+ * @author MinhHieu
+ * Support save file
+ */
 @SuppressWarnings("serial")
 public class SaveFile extends JFrame {
 	public SaveFile(ArrayList<Paint> listPaint, int width, int height){
@@ -37,8 +38,6 @@ public class SaveFile extends JFrame {
            			BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
            			GraphicAdapter ig2 = new GraphicAdapter() {
            			};
-//           			BasicStroke basicStroke = new BasicStroke(7);
-//           			ig2.getGraphicAdapter().setStroke(basicStroke);
            			ig2.setGraphicAdapter(bi.createGraphics());
            			ig2.getGraphicAdapter().setColor(Color.white);
     				ig2.getGraphicAdapter().fillRect(0, 0, width, height);

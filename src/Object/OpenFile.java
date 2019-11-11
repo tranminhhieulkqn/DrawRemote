@@ -14,6 +14,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
 import Frame.WhiteBoardClient;
+import Frame.WhiteBoardServer;
 import Shape.MyLine;
 import Shape.MyOval;
 import Shape.MyPoint;
@@ -21,12 +22,15 @@ import Shape.MyRectangle;
 import Shape.MyTriangle;
 import Shape.Paint;
 
+/**
+ * @author MinhHieu, VanAnh, TuDuyen
+ * Class use to open file txt or png
+ */
 @SuppressWarnings("serial")
 public class OpenFile extends JFrame {
 	public static BufferedImage image;
 	private BufferedReader br;
 	private ArrayList<Paint> listPaint;
-	private Paint ptemp;
 	public ArrayList<Paint> getListPaint() {
 		return this.listPaint;
 	}
@@ -42,6 +46,7 @@ public class OpenFile extends JFrame {
            		try {
            			image = ImageIO.read(fc.getSelectedFile());
            			WhiteBoardClient.frame.repaint();
+           			WhiteBoardServer.frame.repaint();
            		} 
            		catch (IOException ex) {}
         	}

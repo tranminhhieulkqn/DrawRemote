@@ -1,5 +1,9 @@
 package Object;
 
+/**
+ * @author MinhHieu
+ *
+ */
 public enum DrawType{
 	/** Liệt kê các kiểu vẽ
 	 * */

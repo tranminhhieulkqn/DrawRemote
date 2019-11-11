@@ -4,8 +4,11 @@ import java.io.File;
 
 import javax.swing.filechooser.FileFilter;
 
-public class txtSaveFilter extends FileFilter
-{ 
+/**
+ * @author MinhHieu, VanAnh
+ * Support save file to TXT
+ */
+public class txtSaveFilter extends FileFilter{ 
 	public boolean accept(File f)
 	{
 		if (f.isDirectory())

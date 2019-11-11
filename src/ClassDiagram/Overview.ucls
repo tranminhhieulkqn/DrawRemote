@@ -55,16 +55,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="Object.ChatMessage" project="DrawRemote_2-master" 
-    file="/DrawRemote_2-master/src/Object/ChatMessage.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="-1136" y="-131"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
-      <operations public="false" package="false" protected="false" private="false" static="true"/>    
-    </display>  
-  </class>  
-  <class id="8" language="java" name="Object.OpenFile" project="DrawRemote_2-master" 
+  <class id="7" language="java" name="Object.OpenFile" project="DrawRemote_2-master" 
     file="/DrawRemote_2-master/src/Object/OpenFile.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="-1024" y="-61"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -73,7 +64,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="Object.txtSaveFilter" project="DrawRemote_2-master" 
+  <class id="8" language="java" name="Object.txtSaveFilter" project="DrawRemote_2-master" 
     file="/DrawRemote_2-master/src/Object/txtSaveFilter.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="-1011" y="61"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -82,7 +73,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="Object.ColorChoose" project="DrawRemote_2-master" 
+  <class id="9" language="java" name="Object.ColorChoose" project="DrawRemote_2-master" 
     file="/DrawRemote_2-master/src/Object/ColorChoose.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="-1138" y="-69"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -91,7 +82,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <enumeration id="11" language="java" name="Object.DrawType" project="DrawRemote_2-master" 
+  <enumeration id="10" language="java" name="Object.DrawType" project="DrawRemote_2-master" 
     file="/DrawRemote_2-master/src/Object/DrawType.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="-238" y="137"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -100,7 +91,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </enumeration>  
-  <class id="12" language="java" name="Object.SaveFile" project="DrawRemote_2-master" 
+  <class id="11" language="java" name="Object.SaveFile" project="DrawRemote_2-master" 
     file="/DrawRemote_2-master/src/Object/SaveFile.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="-1130" y="91"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -109,7 +100,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="13" language="java" name="Object.GraphicAdapter" project="DrawRemote_2-master" 
+  <class id="12" language="java" name="Object.GraphicAdapter" project="DrawRemote_2-master" 
     file="/DrawRemote_2-master/src/Object/GraphicAdapter.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="-1127" y="-3"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -118,7 +109,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="14" language="java" name="Paint.PaintApp" project="DrawRemote_2-master" 
+  <class id="13" language="java" name="Paint.PaintApp" project="DrawRemote_2-master" 
     file="/DrawRemote_2-master/src/Paint/PaintApp.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="-411" y="136"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -127,7 +118,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="15" language="java" name="Shape.Paint" project="DrawRemote_2-master" 
+  <class id="14" language="java" name="Shape.Paint" project="DrawRemote_2-master" 
     file="/DrawRemote_2-master/src/Shape/Paint.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="-761" y="115"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -136,7 +127,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="16" language="java" name="Socket.Server" project="DrawRemote_2-master" 
+  <class id="15" language="java" name="Socket.Server" project="DrawRemote_2-master" 
     file="/DrawRemote_2-master/src/Socket/Server.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="-550" y="-5"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -145,7 +136,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="17" language="java" name="Socket.Client.ListenFromServer" project="DrawRemote_2-master" 
+  <class id="16" language="java" name="Socket.Client.ListenFromServer" project="DrawRemote_2-master" 
     file="/DrawRemote_2-master/src/Socket/Client.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="-600" y="397"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -154,7 +145,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="18" language="java" name="Socket.Client" project="DrawRemote_2-master" 
+  <class id="17" language="java" name="Socket.Client" project="DrawRemote_2-master" 
     file="/DrawRemote_2-master/src/Socket/Client.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="-537" y="265"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -163,7 +154,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="19" language="java" name="Socket.Server.ClientThread" project="DrawRemote_2-master" 
+  <class id="18" language="java" name="Socket.Server.ClientThread" project="DrawRemote_2-master" 
     file="/DrawRemote_2-master/src/Socket/Server.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="-761" y="-65"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -172,7 +163,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="20" language="java" name="Shape.MyCircle" project="DrawRemote_2-master" 
+  <class id="19" language="java" name="Shape.MyCircle" project="DrawRemote_2-master" 
     file="/DrawRemote_2-master/src/Shape/MyCircle.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="-790" y="392"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -181,7 +172,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="21" language="java" name="Shape.MyPoint" project="DrawRemote_2-master" 
+  <class id="20" language="java" name="Shape.MyPoint" project="DrawRemote_2-master" 
     file="/DrawRemote_2-master/src/Shape/MyPoint.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="-1015" y="292"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -190,7 +181,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="22" language="java" name="Shape.Line" project="DrawRemote_2-master" 
+  <class id="21" language="java" name="Shape.Line" project="DrawRemote_2-master" 
     file="/DrawRemote_2-master/src/Shape/Line.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="-1124" y="177"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -199,7 +190,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="23" language="java" name="Shape.MyLine" project="DrawRemote_2-master" 
+  <class id="22" language="java" name="Shape.MyLine" project="DrawRemote_2-master" 
     file="/DrawRemote_2-master/src/Shape/MyLine.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="-1124" y="291"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -208,7 +199,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="24" language="java" name="Shape.MyRectangle" project="DrawRemote_2-master" 
+  <class id="23" language="java" name="Shape.MyRectangle" project="DrawRemote_2-master" 
     file="/DrawRemote_2-master/src/Shape/MyRectangle.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="-895" y="294"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -217,7 +208,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="25" language="java" name="Shape.Class2D" project="DrawRemote_2-master" 
+  <class id="24" language="java" name="Shape.Class2D" project="DrawRemote_2-master" 
     file="/DrawRemote_2-master/src/Shape/Class2D.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="-841" y="197"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -226,7 +217,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="26" language="java" name="Shape.Class1D" project="DrawRemote_2-master" 
+  <class id="25" language="java" name="Shape.Class1D" project="DrawRemote_2-master" 
     file="/DrawRemote_2-master/src/Shape/Class1D.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="-1022" y="197"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -235,7 +226,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="27" language="java" name="Shape.MyOval" project="DrawRemote_2-master" 
+  <class id="26" language="java" name="Shape.MyOval" project="DrawRemote_2-master" 
     file="/DrawRemote_2-master/src/Shape/MyOval.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="-789" y="292"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -244,7 +235,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="28" language="java" name="Shape.MySquare" project="DrawRemote_2-master" 
+  <class id="27" language="java" name="Shape.MySquare" project="DrawRemote_2-master" 
     file="/DrawRemote_2-master/src/Shape/MySquare.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="-895" y="391"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -253,7 +244,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <class id="29" language="java" name="Shape.MyTriangle" project="DrawRemote_2-master" 
+  <class id="28" language="java" name="Shape.MyTriangle" project="DrawRemote_2-master" 
     file="/DrawRemote_2-master/src/Shape/MyTriangle.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="-682" y="292"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -262,304 +253,317 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <generalization id="30">    
-    <end type="SOURCE" refId="27"/>    
-    <end type="TARGET" refId="25"/>  
-  </generalization>  
-  <association id="31">    
-    <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="32" name="client">        
-        <position height="0" width="0" x="0" y="0"/>      
+  <class id="29" language="java" name="Object.ChatMessage" project="DrawRemote_2-master" 
+    file="/DrawRemote_2-master/src/Object/ChatMessage.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="-1138" y="-138"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <association id="30">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="31" name="listPaint">        
+        <position height="18" width="46" x="-674" y="126"/>      
       </attribute>      
-      <multiplicity id="33" minimum="0" maximum="1">        
+      <multiplicity id="32" minimum="0" maximum="2147483647">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="18" navigable="true"/>    
+    <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <generalization id="33">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="14"/>  
+  </generalization>  
   <generalization id="34">    
-    <end type="SOURCE" refId="25"/>    
-    <end type="TARGET" refId="15"/>  
-  </generalization>  
-  <nesting id="35">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="2"/>  
-  </nesting>  
-  <association id="36">    
-    <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="37" name="server">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="38" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="16" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <nesting id="39">    
-    <end type="SOURCE" refId="18"/>    
-    <end type="TARGET" refId="17"/>  
-  </nesting>  
-  <association id="40">    
-    <end type="SOURCE" refId="18" navigable="false">      
-      <attribute id="41" name="listPaint">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="42" minimum="0" maximum="2147483647">        
-        <position height="16" width="21" x="-708" y="164"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="15" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="43">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="44" name="server">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="45" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="16" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="46">    
-    <end type="SOURCE" refId="29"/>    
+    <end type="SOURCE" refId="20"/>    
     <end type="TARGET" refId="25"/>  
   </generalization>  
-  <association id="47">    
+  <association id="35">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="48" name="drawType">        
+      <attribute id="36" name="client">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="49" minimum="0" maximum="1">        
+      <multiplicity id="37" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="11" navigable="true"/>    
+    <end type="TARGET" refId="17" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <association id="38">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="39" name="drawType">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="40" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="41">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="14"/>  
+  </generalization>  
+  <association id="42">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="43" name="paintApp">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="44" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="45">    
+    <end type="SOURCE" refId="22" navigable="false">      
+      <attribute id="46" name="line">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="47" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="48">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="26"/>  
+  </generalization>  
+  <generalization id="49">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="25"/>  
+  </generalization>  
   <association id="50">    
-    <bendpoint x="-582" y="63"/>    
-    <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="51" name="ptemp">        
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="51" name="frame">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
       <multiplicity id="52" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="15" navigable="true"/>    
+    <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="53">    
-    <end type="SOURCE" refId="23" navigable="false">      
-      <attribute id="54" name="line"/>      
-      <multiplicity id="55" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="22" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="56">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="57" name="paintApp">        
+  <generalization id="53">    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="24"/>  
+  </generalization>  
+  <association id="54">    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="55" name="board">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="58" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="59">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="60" name="frame">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="61" minimum="0" maximum="1">        
+      <multiplicity id="56" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="62">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="63" name="frame">        
+  <association id="57">    
+    <bendpoint x="-918" y="90"/>    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="58" name="ptemp">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="64" minimum="0" maximum="1">        
+      <multiplicity id="59" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
+    <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="65">    
-    <end type="SOURCE" refId="28"/>    
+  <association id="60">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="61" name="server">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="62" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="63">    
+    <end type="SOURCE" refId="26"/>    
     <end type="TARGET" refId="24"/>  
   </generalization>  
-  <association id="66">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="67" name="drawType">        
+  <association id="64">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="65" name="listClient">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="68" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="11" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="69">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="70" name="client">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="71" minimum="0" maximum="1">        
+      <multiplicity id="66" minimum="0" maximum="2147483647">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="18" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="72">    
-    <end type="SOURCE" refId="19" navigable="false">      
-      <attribute id="73" name="listPaint">        
-        <position height="18" width="44" x="-801" y="43"/>      
-      </attribute>      
-      <multiplicity id="74" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="15" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="75">    
-    <end type="SOURCE" refId="24"/>    
-    <end type="TARGET" refId="25"/>  
-  </generalization>  
-  <association id="76">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="77" name="paintApp">        
+  <nesting id="67">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="2"/>  
+  </nesting>  
+  <association id="68">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="69" name="board">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="78" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="79">    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="80" name="board">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="81" minimum="0" maximum="1">        
+      <multiplicity id="70" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="82">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="83" name="listPaint">        
+  <association id="71">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="72" name="client">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="84" minimum="0" maximum="2147483647">        
+      <multiplicity id="73" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="15" navigable="true"/>    
+    <end type="TARGET" refId="17" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="85">    
+  <association id="74">    
+    <bendpoint x="-582" y="63"/>    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="75" name="ptemp">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="76" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="77">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="23"/>  
+  </generalization>  
+  <association id="78">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="79" name="frame">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="80" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="81">    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="82" name="listPaint">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="83" minimum="0" maximum="2147483647">        
+        <position height="16" width="21" x="-708" y="164"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="84">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="85" name="drawType">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="86" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="87">    
     <end type="SOURCE" refId="23"/>    
-    <end type="TARGET" refId="26"/>  
+    <end type="TARGET" refId="24"/>  
   </generalization>  
-  <association id="86">    
-    <bendpoint x="-918" y="90"/>    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="87" name="ptemp">        
+  <association id="88">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="89" name="paintApp">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="88" minimum="0" maximum="1">        
+      <multiplicity id="90" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="15" navigable="true"/>    
+    <end type="TARGET" refId="13" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="89">    
-    <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="90" name="drawType">        
+  <association id="91">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="92" name="listPaint">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="91" minimum="0" maximum="1">        
+      <multiplicity id="93" minimum="0" maximum="2147483647">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="11" navigable="true"/>    
+    <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="92">    
-    <end type="SOURCE" refId="26"/>    
-    <end type="TARGET" refId="15"/>  
-  </generalization>  
-  <association id="93">    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="94" name="listClient">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="95" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="19" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="96">    
-    <end type="SOURCE" refId="20"/>    
-    <end type="TARGET" refId="27"/>  
-  </generalization>  
-  <association id="97">    
-    <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="98" name="listPaint">        
-        <position height="18" width="46" x="-674" y="126"/>      
-      </attribute>      
-      <multiplicity id="99" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="15" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="100">    
+  <association id="94">    
     <end type="SOURCE" refId="18" navigable="false">      
-      <attribute id="101" name="board">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <attribute id="95" name="listPaint">        
+        <position height="18" width="44" x="-801" y="43"/>      
       </attribute>      
-      <multiplicity id="102" minimum="0" maximum="1">        
+      <multiplicity id="96" minimum="0" maximum="2147483647">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
+    <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <nesting id="103">    
-    <end type="SOURCE" refId="16"/>    
-    <end type="TARGET" refId="19"/>  
+  <nesting id="97">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="16"/>  
   </nesting>  
-  <generalization id="104">    
-    <end type="SOURCE" refId="21"/>    
-    <end type="TARGET" refId="26"/>  
-  </generalization>  
+  <association id="98">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="99" name="server">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="100" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="101">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="102" name="drawType">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="103" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="104">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="18"/>  
+  </nesting>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

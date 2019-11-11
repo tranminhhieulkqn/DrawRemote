@@ -5,6 +5,11 @@ import java.awt.Color;
 import java.awt.Point;
 import java.io.Serializable;
 
+/**
+ * @author MinhHieu
+ * Class used to extend application
+ * 
+ */
 public class InfoPaint implements Serializable {
 
 	/**
@@ -17,6 +22,7 @@ public class InfoPaint implements Serializable {
 	public Color color = Color.BLACK;//Chọn màu vẽ
 	public BasicStroke stroke = new BasicStroke(1);
 	
+	//Data encapsulation
 	public Point getStartDrag() {
 		return startDrag;
 	}
@@ -67,6 +73,8 @@ public class InfoPaint implements Serializable {
 		this.stroke = new BasicStroke(sizeStroke);
 	}
 	
+	
+	//Constructor
 	public InfoPaint(InfoPaint infoPaint) {
 		// TODO Auto-generated constructor stub
 		this.startDrag 	= infoPaint.startDrag;

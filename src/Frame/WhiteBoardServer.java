@@ -51,7 +51,6 @@ public class WhiteBoardServer extends JFrame implements WindowListener{
 	
 	public static String selectShap = "";
 	public static Color selectColor = Color.black;
-//	public static ArrayList<Paint> paint = new ArrayList<Paint>();
 	public PaintApp paintApp = new PaintApp();
 
 
@@ -64,7 +63,7 @@ public class WhiteBoardServer extends JFrame implements WindowListener{
 	public JLabel lblNetVe;
 	// my server
 	public Server server;
-	static WhiteBoardServer frame;
+	public static WhiteBoardServer frame;
 
 	/**
 	 * Launch the application.
@@ -633,14 +632,14 @@ public class WhiteBoardServer extends JFrame implements WindowListener{
 					.addContainerGap()
 					.addComponent(lblPortNumber)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(textFieldPortNumber, GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+					.addComponent(textFieldPortNumber, GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(buttonStartStop, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
 				.addGroup(gl_panelManagement.createSequentialGroup()
 					.addGroup(gl_panelManagement.createParallelGroup(Alignment.LEADING)
-						.addComponent(panelListUser, GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
-						.addComponent(panelStatus, GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
+						.addComponent(panelListUser, GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
+						.addComponent(panelStatus, GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
 						.addComponent(panelChatRoom, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE))
 					.addGap(3))
 		);
@@ -655,9 +654,9 @@ public class WhiteBoardServer extends JFrame implements WindowListener{
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(panelStatus, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panelListUser, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
+					.addComponent(panelListUser, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panelChatRoom, GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+					.addComponent(panelChatRoom, GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
 					.addContainerGap())
 		);
 		panelManagement.setLayout(gl_panelManagement);

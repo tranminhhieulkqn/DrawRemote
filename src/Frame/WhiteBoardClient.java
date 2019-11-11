@@ -21,6 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -34,7 +35,6 @@ import Object.ColorChoose;
 import Object.DrawType;
 import Object.OpenFile;
 import Object.SaveFile;
-import Object.User;
 import Paint.PaintApp;
 import Socket.Client;
 
@@ -47,13 +47,8 @@ public class WhiteBoardClient extends JFrame implements WindowListener {
 	public PaintApp paintApp = new PaintApp();
 
 
-	// if it is for connection
-	private boolean connected;
 	// the Client object
 	private Client client;
-	// the default port number
-	private int defaultPort;
-	private String defaultHost;
 	//Phần vẽ
 	public static WhiteBoardClient frame;
 	public static String selectShap = "";
@@ -93,7 +88,6 @@ public class WhiteBoardClient extends JFrame implements WindowListener {
 		// let the user change them
 		textFieldServerAddress.setEditable(true);
 		textFieldPortNumber.setEditable(true);
-		connected = false;
 	}
 	
 	public WhiteBoardClient() {
@@ -134,10 +128,12 @@ public class WhiteBoardClient extends JFrame implements WindowListener {
 		mntmOpen.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
 //                selectShap="Open";
-                drawType = DrawType.Open;
+            	//selectShap = "Open";
             	try {
             		paintApp.listPaint.clear();
-					new OpenFile();
+            		OpenFile open = new OpenFile();
+					paintApp.listPaint = open.getListPaint();
+					paintApp.repaint();
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
 				}
@@ -559,8 +555,7 @@ public class WhiteBoardClient extends JFrame implements WindowListener {
 					return;
 				paintApp.setClient(client);
 				textFieldMessage.setText("");
-				//label.setText("Enter your message below");
-				connected = true;
+
 				
 				// disable login button
 				btnLogin.setEnabled(false);
@@ -635,7 +630,9 @@ public class WhiteBoardClient extends JFrame implements WindowListener {
 		textFieldMessage = new JTextField();
 		textFieldMessage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				client.sendMessageChat(new ChatMessage(client.getUsername() +" >> "+ textFieldMessage.getText()));
+				if(client != null) {
+					client.sendMessageChat(new ChatMessage(client.getUsername() +" >> "+ textFieldMessage.getText()));
+				}else JOptionPane.showConfirmDialog(null, "You are not connected to the server to message", "Notification", JOptionPane.OK_OPTION, JOptionPane.INFORMATION_MESSAGE);
 				textFieldMessage.setText("");
 			}
 		});
